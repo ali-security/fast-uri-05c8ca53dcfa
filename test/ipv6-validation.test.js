@@ -85,7 +85,11 @@ const strayBracketHosts = [
   ['//evil.com]/private', 'evil.com]'],
   ['foo://[evil.com/private', '[evil.com'],
   ['foo://evil.com]/private', 'evil.com]'],
-  ['http://[[::1]/private', '[[::1]']
+  ['http://[[::1]/private', '[[::1]'],
+  ['http://user@[@127.0.0.1:8123/admin', '[@127.0.0.1'],
+  ['http://user@]127.0.0.1:8123/admin', ']127.0.0.1'],
+  ['http://user@prefix[@127.0.0.1:8123/admin', 'prefix[@127.0.0.1'],
+  ['http://user@prefix]@127.0.0.1:8123/admin', 'prefix]@127.0.0.1']
 ]
 
 test('hosts with a stray IP-literal bracket are rejected, not repaired', (t) => {
